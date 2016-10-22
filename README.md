@@ -1,4 +1,10 @@
-# Disingenuous
+# Disingenuous [![Build Status](https://travis-ci.org/nietaki/Disingenuous.svg?branch=master)](https://travis-ci.org/nietaki/Disingenuous)
+
+A hobby project one day hoping to be a multiplayer clone of a well-known abstract logic game.
+Learning about Phoenix, Channels and deployment in general.
+
+
+## Phoenix default README.md
 
 To start your Phoenix app:
 
@@ -10,7 +16,7 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
 
-## Learn more
+### Learn more
 
   * Official website: http://www.phoenixframework.org/
   * Guides: http://phoenixframework.org/docs/overview
