@@ -3,6 +3,7 @@
 A hobby project one day hoping to be a multiplayer clone of a well-known abstract logic game.
 Learning about Phoenix, Channels and deployment in general.
 
+This repo gets deployed to https://disingenuous.herokuapp.com/
 
 ## Phoenix default README.md
 
