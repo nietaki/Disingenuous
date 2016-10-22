@@ -16,6 +16,7 @@
       <header class="header">
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
+            <li><a href="">Home</a></li>
             <li><a href="http://www.phoenixframework.org/docs">Phoenix docs</a></li>
           </ul>
         </nav>
@@ -30,6 +31,8 @@
       </main>
 
     </div> <!-- /container -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.0.0/pixi.min.js"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
