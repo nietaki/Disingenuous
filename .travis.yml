@@ -1,0 +1,17 @@
+language: elixir
+elixir:
+- 1.3.2
+otp_release:
+- 18.3
+addons:
+services:
+notifications:
+script:
+- "MIX_ENV=test mix test"
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - _build
+    - deps
