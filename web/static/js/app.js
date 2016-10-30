@@ -19,6 +19,26 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
-import "./dragging"
+import * as components from "./components"
+import * as c from "./constants"
 
 console.log("app.js")
+console.log(c.HEX_RADIUS)
+
+// let sprite = components.createBackgroundSprite()
+let sprite = components.createHexagonSprite(2)
+sprite.position.set(400, 300);
+c.stage.addChild(sprite);
+console.log(sprite.width);
+console.log(sprite.height);
+components.createDot(400, 300);
+
+requestAnimationFrame(animate);
+
+function animate() {
+
+  requestAnimationFrame(animate);
+
+  // render the stage
+  c.renderer.render(c.stage);
+}
