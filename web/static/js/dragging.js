@@ -17,10 +17,18 @@ for (var i = 0; i < 10; i++)
   createBunny(Math.floor(Math.random() * 800) , Math.floor(Math.random() * 600));
 }
 
-createHexagon(400, 300)
+let hexTex = createHexagonTexture();
+console.log(hexTex)
+
+let sprite = new PIXI.Sprite(hexTex);
+sprite.anchor.set(0.5, 0.5)
+sprite.position.set(400, 300);
+stage.addChild(sprite);
+console.log(sprite);
+console.log("dupa");
 createDot(400, 300);
 
-function createHexagon(x, y)
+function createHexagonTexture()
 {
   let hex = new Graphics();
   hex.beginFill(0x0000DD);
@@ -31,11 +39,8 @@ function createHexagon(x, y)
   hex.lineTo(0, 50);
   hex.lineTo(0, 0);
   hex.endFill();
-
-  console.log(hex)
-  hex.position.set(x, y)
-
-  stage.addChild(hex)
+  console.log(hex);
+  return renderer.generateTexture(hex);
 }
 
 function createDot(x, y)
