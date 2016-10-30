@@ -1,5 +1,7 @@
 console.log("dragging.js")
 
+let Graphics = PIXI.Graphics
+
 var renderer = PIXI.autoDetectRenderer(800, 600);
 // document.body.appendChild(renderer.view);
 $("#game_container").append(renderer.view);
@@ -12,84 +14,122 @@ var texture = PIXI.Texture.fromImage('images/bunny.png');
 
 for (var i = 0; i < 10; i++)
 {
-    createBunny(Math.floor(Math.random() * 800) , Math.floor(Math.random() * 600));
+  createBunny(Math.floor(Math.random() * 800) , Math.floor(Math.random() * 600));
+}
+
+createHexagon(400, 300)
+createDot(400, 300);
+
+function createHexagon(x, y)
+{
+  let hex = new Graphics();
+  hex.beginFill(0x0000DD);
+  hex.lineStyle(0);
+  hex.moveTo(0, 0);
+  hex.lineTo(50, 0);
+  hex.lineTo(50, 50);
+  hex.lineTo(0, 50);
+  hex.lineTo(0, 0);
+  hex.endFill();
+
+  console.log(hex)
+  hex.position.set(x, y)
+
+  stage.addChild(hex)
+}
+
+function createDot(x, y)
+{
+  let dot = new Graphics();
+  dot.beginFill(0xDD0000);
+  dot.lineStyle(0);
+  dot.drawCircle(0, 0, 2)
+  dot.endFill();
+
+  dot.position.set(x, y)
+
+  stage.addChild(dot)
 }
 
 function createBunny(x, y)
 {
-    // create our little bunny friend..
-    var bunny = new PIXI.Sprite(texture);
+  // create our little bunny friend..
+  var bunny = new PIXI.Sprite(texture);
 
-    // enable the bunny to be interactive... this will allow it to respond to mouse and touch events
-    bunny.interactive = true;
+  // enable the bunny to be interactive... this will allow it to respond to mouse and touch events
+  bunny.interactive = true;
 
-    // this button mode will mean the hand cursor appears when you roll over the bunny with your mouse
-    bunny.buttonMode = true;
+  // this button mode will mean the hand cursor appears when you roll over the bunny with your mouse
+  bunny.buttonMode = true;
 
-    // center the bunny's anchor point
-    bunny.anchor.set(0.5);
+  // center the bunny's anchor point
+  bunny.anchor.set(0.5);
 
-    // make it a bit bigger, so it's easier to grab
-    bunny.scale.set(3);
+  // make it a bit bigger, so it's easier to grab
+  bunny.scale.set(3);
 
-    // setup events
-    bunny
-        // events for drag start
-        .on('mousedown', onDragStart)
-        .on('touchstart', onDragStart)
-        // events for drag end
-        .on('mouseup', onDragEnd)
-        .on('mouseupoutside', onDragEnd)
-        .on('touchend', onDragEnd)
-        .on('touchendoutside', onDragEnd)
-        // events for drag move
-        .on('mousemove', onDragMove)
-        .on('touchmove', onDragMove);
+  // setup events
+  bunny
+    // events for drag start
+    .on('mousedown', onDragStart)
+    .on('touchstart', onDragStart)
+    // events for drag end
+    .on('mouseup', onDragEnd)
+    .on('mouseupoutside', onDragEnd)
+    .on('touchend', onDragEnd)
+    .on('touchendoutside', onDragEnd)
+    // events for drag move
+    .on('mousemove', onDragMove)
+    .on('touchmove', onDragMove);
 
-    // move the sprite to its designated position
-    bunny.position.x = x;
-    bunny.position.y = y;
+  // move the sprite to its designated position
+  bunny.position.x = x;
+  bunny.position.y = y;
 
-    // add it to the stage
-    stage.addChild(bunny);
+  // add it to the stage
+  stage.addChild(bunny);
 }
 
 requestAnimationFrame( animate );
 
 function animate() {
 
-    requestAnimationFrame(animate);
+  requestAnimationFrame(animate);
 
-    // render the stage
-    renderer.render(stage);
+  // render the stage
+  renderer.render(stage);
 }
 
 function onDragStart(event)
 {
-    // store a reference to the data
-    // the reason for this is because of multitouch
-    // we want to track the movement of this particular touch
-    this.data = event.data;
-    this.alpha = 0.5;
-    this.dragging = true;
+  // store a reference to the data
+  // the reason for this is because of multitouch
+  // we want to track the movement of this particular touch
+  console.log(event);
+  this.data = event.data;
+  this.alpha = 0.5;
+  this.dragging = true;
 }
 
 function onDragEnd()
 {
-    this.alpha = 1;
+  this.alpha = 1;
 
-    this.dragging = false;
+  this.dragging = false;
 
-    // set the interaction data to null
-    this.data = null;
+  // set the interaction data to null
+  this.data = null;
 }
 
 function onDragMove()
 {
-    if (this.dragging)
-    {
-        var newPosition = this.data.getLocalPosition(this.parent);
-        this.position.x = newPosition.x;
-        this.position.y = newPosition.y;
-    }
+  if (this.dragging)
+  {
+    console.log(this.data);
+    var newPosition = this.data.getLocalPosition(this.parent);
+    this.position.x = newPosition.x;
+    this.position.y = newPosition.y;
+  } else {
+    // console.log("not dragging")
+  }
 }
