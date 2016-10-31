@@ -25,13 +25,25 @@ import * as c from "./constants"
 console.log("app.js")
 console.log(c.HEX_RADIUS)
 
+// painting the board
+
+for (var xpos = 0; xpos < 7; xpos++) {
+  for (var ypos = 0; ypos < 7; ypos++) {
+    let tile = components.createBackgroundSprite()
+    let pos = c.tilePosition(xpos, ypos)
+    tile.position.copy(pos)
+  }
+}
+
 // let sprite = components.createBackgroundSprite()
 let sprite = components.createHexagonSprite(2)
-sprite.position.set(400, 300);
-c.stage.addChild(sprite);
+sprite.position.copy(c.tilePosition(4, 4));
+// c.stage.addChild(sprite);
 console.log(sprite.width);
 console.log(sprite.height);
 components.createDot(400, 300);
+
+console.log(c.tilePosition(2,3))
 
 requestAnimationFrame(animate);
 

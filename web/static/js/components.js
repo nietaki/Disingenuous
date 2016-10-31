@@ -49,6 +49,7 @@ export function createHexagonSprite(markNumber)
   let sprite = new PIXI.Sprite(tileTextures[markNumber]);
   sprite.anchor.set(0.5, 0.5)
   sprite.position.set(400, 300); //that's not necessary most of the time.
+  c.stage.addChild(sprite)
   return sprite
 }
 
@@ -56,6 +57,7 @@ export function createBackgroundSprite()
 {
   let sprite = new PIXI.Sprite(backgroundTexture);
   sprite.anchor.set(0.5, 0.5)
+  c.stage.addChild(sprite)
   return sprite
 }
 
