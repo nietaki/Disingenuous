@@ -9,7 +9,7 @@ export let xSpacing = 2 * (HEX_RADIUS * Math.sqrt(3)) / 2
 export let ySpacing = HEX_RADIUS * 1.5
 
 export let FIRST_TILE_X = 250
-export let FIRST_TILE_Y = 200
+export let FIRST_TILE_Y = 60
 
 export function tilePosition(row, slashColumn)
 {

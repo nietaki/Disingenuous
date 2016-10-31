@@ -27,17 +27,17 @@ console.log(c.HEX_RADIUS)
 
 // painting the board
 
-for (var xpos = 0; xpos < 7; xpos++) {
-  for (var ypos = 0; ypos < 7; ypos++) {
+for (var row = 0; row < 11; row++) {
+  for (var col = Math.max(0, row - 5); col < Math.min(11, 6 + row); col++) {
     let tile = components.createBackgroundSprite()
-    let pos = c.tilePosition(xpos, ypos)
+    let pos = c.tilePosition(row, col)
     tile.position.copy(pos)
   }
 }
 
 // let sprite = components.createBackgroundSprite()
 let sprite = components.createHexagonSprite(2)
-sprite.position.copy(c.tilePosition(4, 4));
+sprite.position.copy(c.tilePosition(0, 0));
 // c.stage.addChild(sprite);
 console.log(sprite.width);
 console.log(sprite.height);
