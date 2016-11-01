@@ -3,7 +3,8 @@
   "license": "MIT",
   "scripts": {
     "deploy": "brunch build --production",
-    "watch": "brunch watch --stdin"
+    "watch": "brunch watch --stdin",
+    "test": "mocha --compilers js:babel-register test/js/**/*.js"
   },
   "dependencies": {
     "phoenix": "file:deps/phoenix",
@@ -11,10 +12,12 @@
   },
   "devDependencies": {
     "babel-brunch": "~6.0.0",
+    "babel-register": "^6.18.0",
     "brunch": "2.7.4",
     "clean-css-brunch": "~2.0.0",
     "css-brunch": "~2.0.0",
     "javascript-brunch": "~2.0.0",
+    "mocha": "^3.1.2",
     "uglify-js-brunch": "~2.0.1"
   }
 }
