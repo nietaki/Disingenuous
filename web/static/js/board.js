@@ -23,6 +23,10 @@ export class Point {
     return (this.x == otherPoint.x) && (this.y == otherPoint.y)
   }
 
+  get copy() {
+    return new Point(this.x, this.y)
+  }
+
   moved(dir) {
     return new Point(this.x + xOffsets[dir], this.y + yOffsets[dir])
   }
@@ -35,6 +39,32 @@ export class Point {
 
 let _tileFaces;
 export class Tile {
+
+  constructor(id, anchor) {
+    assert(anchor.constructor.name == Point.name)
+
+    this.id = id;
+    this.anchor = anchor;
+    this.orientation = 1; //LD
+  }
+
+  get faces() {
+    return Tile.tileFaces[this.id]
+  }
+
+  get face1() {
+    return this.faces[0]
+  }
+
+  get face2() {
+    return this.faces[1]
+  }
+
+  get positions() {
+    return [this.anchor.copy, this.anchor.moved(this.orientation)]
+  }
+
+  // static functions
 
   static generateTileFaces() {
     var ret = []
@@ -56,10 +86,6 @@ export class Tile {
 
   static get tileFaces() {
     return _tileFaces
-  }
-
-  constructor(id) {
-    this.id = id
   }
 }
 

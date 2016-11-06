@@ -76,4 +76,21 @@ describe('Tile', function() {
       assert.deepEqual(board.Tile.tileFaces[120 - 1], [4, 5])
     });
   })
+
+  describe('constructor', function() {
+    it('initializes the values correctly', function() {
+      var tile = new board.Tile(119, new board.Point(6, 7));
+      assert.equal(tile.id, 119)
+      assert.deepEqual(tile.faces, [4, 5])
+      assert.equal(tile.face1, 4)
+      assert.equal(tile.face2, 5)
+
+      assert.equal(tile.orientation, 1)
+
+      assert.deepEqual(
+        tile.positions,
+        [new board.Point(6, 7), new board.Point(7, 8)]
+      )
+    })
+  })
 })
