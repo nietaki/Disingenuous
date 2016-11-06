@@ -7,6 +7,8 @@ export const directions = new Set([0, 1, 2, 3, 4, 5])
 export const xOffsets = [1, 1, 0, -1, -1,  0]
 export const yOffsets = [0, 1, 1,  0, -1, -1]
 
+export const TILE_COUNT = 120;
+
 Object.freeze(directions)
 
 export class Point {
@@ -40,7 +42,7 @@ export class Point {
 let _tileFaces;
 export class Tile {
 
-  constructor(id, anchor) {
+  constructor(id, anchor = new Point(-1, -1)) {
     assert(anchor.constructor.name == Point.name)
 
     this.id = id;
@@ -90,3 +92,37 @@ export class Tile {
 }
 
 _tileFaces = Tile.generateTileFaces()
+
+
+export class Board {
+  constructor() {
+    this.placedTiles = [];
+    this.playerHolder = [];
+    this.draggedTile = null;
+  }
+
+  addToHolder(tile) {
+    assert(tile.constructor.name == Tile.name)
+
+    tile.orientation = 1;
+    tile.anchor = new Point(-1, -1);
+
+    this.playerHolder.push(tile);
+
+    assert(this.playerHolder.length <= 6)
+  }
+
+  placeOnBoard(tile) {
+    assert(tile.constructor.name == Tile.name)
+    // the tile is assumed to have the correct position and orientation
+
+    // making it work regardless if the tile comes from the opponent or current player
+    if(this.draggedTile && this.draggedTile.id == tile.id) {
+      this.draggedTile = null
+    }
+
+    this.playerHolder = this.playerHolder.filter(function(t){return t.id != tile.id});
+
+    this.placedTiles.push(tile)
+  }
+}

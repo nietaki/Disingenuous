@@ -23,7 +23,7 @@ function p(x, y) {
 
 describe('Point', function() {
   let fours;
-  before(function() {
+  beforeEach(function() {
     fours = new board.Point(4,4);
   })
 
@@ -94,3 +94,49 @@ describe('Tile', function() {
     })
   })
 })
+
+describe('Board', function() {
+  describe('constructor', function() {
+    it('constructs the object correctly', function() {
+      var b = new board.Board();
+      assert.deepEqual(b.placedTiles, [])
+      assert.deepEqual(b.playerHolder, [])
+      assert.equal(b.draggedTile, null)
+    });
+  });
+
+  describe('addToHolder', function() {
+    it('works on an empty holder', function() {
+      var b = new board.Board();
+      var tile = new board.Tile(2)
+      b.addToHolder(tile)
+      assert.equal(b.playerHolder.length, 1)
+      b.addToHolder(new board.Tile(3))
+      assert.equal(b.playerHolder.length, 2)
+    });
+  });
+
+  describe('placeOnBoard()', function() {
+    let b;
+    beforeEach(function() {
+      b = new board.Board();
+    })
+    it('works on a random tile and empty board', function() {
+      var tile = new board.Tile(52);
+      b.draggedTile = new board.Tile(32);
+      b.placeOnBoard(tile);
+      assert.deepEqual(b.placedTiles, [tile])
+      assert.deepEqual(b.playerHolder, [])
+      assert.deepEqual(b.draggedTile, new board.Tile(32))
+    });
+
+    it('works on a currently dragged tile', function() {
+      var tile = new board.Tile(32);
+      b.draggedTile = new board.Tile(32);
+      b.placeOnBoard(tile);
+      assert.deepEqual(b.placedTiles, [tile])
+      assert.deepEqual(b.playerHolder, [])
+      assert.deepEqual(b.draggedTile, null)
+    });
+  });
+});
