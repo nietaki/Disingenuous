@@ -47,11 +47,33 @@ describe('Point', function() {
   })
 
   describe('moved()', function() {
-    it('moves left', function() {
+    it('moves right', function() {
       assert(p(5, 4).equals(fours.moved(0)))
+    });
+    it('moves left', function() {
+      assert(p(3, 4).equals(fours.moved(3)))
     });
     it('moves LD', function() {
       assert(p(5, 5).equals(fours.moved(1)))
     });
   });
+});
+
+describe('Tile', function() {
+  describe('tileFaces', function() {
+    it('has the correct tile count', function() {
+      assert.equal(board.Tile.tileFaces.length, 120)
+    });
+    it('has some of its values set correctly', function() {
+      assert.deepEqual(board.Tile.tileFaces[0], [0, 0])
+      assert.deepEqual(board.Tile.tileFaces[1], [0, 0])
+      assert.deepEqual(board.Tile.tileFaces[4], [0, 0])
+      assert.deepEqual(board.Tile.tileFaces[5], [1, 1])
+
+      assert.deepEqual(board.Tile.tileFaces[6 * 5 - 1], [5, 5])
+      assert.deepEqual(board.Tile.tileFaces[6 * 5], [0, 1])
+
+      assert.deepEqual(board.Tile.tileFaces[120 - 1], [4, 5])
+    });
+  })
 })
